@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Wordpress Installation ColoredCow
 
 ## Prerequisites
@@ -82,3 +83,7 @@
       ```
 
    * All geared up for the famous [5 minute install](https://codex.wordpress.org/Installing_WordPress). 
+=======
+# WP_RSVP
+Phase 2- WordPress Implementation
+>>>>>>> 8c4d6fe341b673b560b6cfb4f140671642b9e750
