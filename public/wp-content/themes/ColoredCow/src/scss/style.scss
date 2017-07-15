@@ -35,23 +35,21 @@ Text Domain: coloredcow
 }
 body{
 	padding-top: 150px;
-	background-image: url('RSVP_IMAGES/bg.png');
+	background-image: url('dist/img/bg.png');
 }
 h5{
 	font-family: 'Marcellus SC'; 
 	font-size: 85px; 
-	color:goldenrod;
+	color:$goldenrod;
 }
 .lead{
-	font-size: 25px; 
-	font-family: 'Marcellus SC';
+	font-size: 20px; 
+	font-family: 'Open Sans';
 	padding-bottom: 5px;
 }
 .about{
 	padding-left: 10px;
-	font-style: initial;
-	font-style: Antic; 
-	color:white;
+	color:$white;
 	text-align: justify;
 }
 
