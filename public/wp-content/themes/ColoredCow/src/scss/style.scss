@@ -33,5 +33,19 @@ Text Domain: coloredcow
 		display: block;
 	}
 }
-
+.btn:hover
+{
+			cursor: pointer;
+}
+body{
+	background-image: url('RSVP_IMAGES/bg.png');
+}
+#footer {
+	text-align:center;
+	bottom: 0;
+	width: 100%;
+	height:60px;
+    background-color: black;
+    color: white;
+}
 @import 'media';
