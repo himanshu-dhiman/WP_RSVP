@@ -33,5 +33,26 @@ Text Domain: coloredcow
 		display: block;
 	}
 }
+body{
+	padding-top: 150px;
+	background-image: url('RSVP_IMAGES/bg.png');
+}
+h5{
+	font-family: 'Marcellus SC'; 
+	font-size: 85px; 
+	color:goldenrod;
+}
+.lead{
+	font-size: 25px; 
+	font-family: 'Marcellus SC';
+	padding-bottom: 5px;
+}
+.about{
+	padding-left: 10px;
+	font-style: initial;
+	font-style: Antic; 
+	color:white;
+	text-align: justify;
+}
 
 @import 'media';
