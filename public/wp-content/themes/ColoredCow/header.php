@@ -17,7 +17,7 @@
 		<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 			<ul class="navbar-nav">
 				<li class="nav-item active">
-					<a role="button" class="btn btn-outline-secondary" href="guests_control_page.php" style="font-family: 'Oswald'; font-size: 17px;">
+					<a role="button" class="btn btn-outline-secondary" href="wp/wp-login.php" style="font-family: 'Oswald'; font-size: 17px;">
 						ADMINISTRATOR LOGIN<span class="sr-only">(current)</span>
 					</a>
 				</li>
