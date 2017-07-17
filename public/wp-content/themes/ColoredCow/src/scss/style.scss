@@ -37,6 +37,7 @@ Text Domain: coloredcow
 	cursor: pointer;
 }
 body{
+	padding-top: 150px;
 	background-image: url('dist/img/bg.png');
 }
 .logo{
@@ -46,5 +47,22 @@ body{
 .admin-button {
 	font-family: 'Oswald'; 
 	font-size: 17px;
+}
+h5{
+	font-family: 'Marcellus SC'; 
+	font-size: 85px; 
+	color:$goldenrod;
+}
+.lead{
+	font-size: 20px; 
+	font-family: 'Open Sans';
+	padding-bottom: 5px;
+}
+.about{
+	padding-left: 10px;
+	font-family: 'Oswald'; 
+	color:$white;
+	font-size: 17px;
+	text-align: justify;
 }
 @import 'media';
