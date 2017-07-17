@@ -2,11 +2,9 @@
 
 if ( ! function_exists( 'cc_scripts' ) ) {
     function cc_scripts() {
-        
         wp_enqueue_script('cc-jquery-script','https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js');
         wp_enqueue_script('cc-bootstrap-script','https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js');
         wp_enqueue_script('cc-fontawesome-icons','https://use.fontawesome.com/ffc2c94a85.js');
-
         wp_localize_script( 'main', 'PARAMS', array('ajaxurl' => admin_url('admin-ajax.php')) );
    }
     add_action('wp_enqueue_scripts','cc_scripts');
