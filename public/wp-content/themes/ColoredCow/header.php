@@ -14,12 +14,12 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<a class="navbar-brand" href="#" style="font-family: ;">
-			<img src="<?php echo esc_url(get_template_directory_uri()."/dist/img/logo.png");?>" class="d-inline-block align-top logo" alt="">
+			<img src="<?php echo esc_url(get_template_directory_uri()."/dist/img/logo.png");?>" class="d-inline-block align-top logo" alt="ColoredCow">
 		</a>
 		<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 			<ul class="navbar-nav">
 				<li class="nav-item active">
-					<a role="button" class="btn btn-outline-secondary admin-button" href="wp/wp-login.php">
+					<a role="button" class="btn btn-outline-secondary admin-button" href="<?php echo wp_login_url(); ?>">
 						ADMINISTRATOR LOGIN<span class="sr-only">(current)</span>
 					</a>
 				</li>

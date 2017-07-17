@@ -12,10 +12,7 @@ if ( ! function_exists( 'cc_scripts' ) ) {
 if ( ! function_exists( 'cc_styles' ) ) {
     function cc_styles() { 
         wp_enqueue_style('cc-bootstrap4-style', get_template_directory_uri().'/dist/lib/css/bootstrap4.min.css');
-        wp_enqueue_style('cc-font-oswald','https://fonts.googleapis.com/css?family=Oswald');
-        wp_enqueue_style('cc-font-marcellus-sc','https://fonts.googleapis.com/css?family=Marcellus SC');
-        wp_enqueue_style('cc-font-roboto','https://fonts.googleapis.com/css?family=Roboto');
-        wp_enqueue_style('cc-font-open-sans','https://fonts.googleapis.com/css?family=Open Sans');
+        wp_enqueue_style('cc-fonts','https://fonts.googleapis.com/css?family=Oswald|Marcellus+SC|Roboto|Open+Sans');
         wp_enqueue_style('style', get_template_directory_uri().'/style.css');
    }
     add_action('wp_enqueue_scripts','cc_styles');
