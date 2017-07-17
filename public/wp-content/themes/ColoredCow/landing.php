@@ -4,7 +4,7 @@
  * Template Name: Landing
  */
 
-   get_header();
+   	get_header();
 ?>
 
 <?php 

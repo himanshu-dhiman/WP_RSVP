@@ -21,7 +21,6 @@ if ( ! function_exists( 'cc_styles' ) ) {
    }
     add_action('wp_enqueue_scripts','cc_styles');
 }
-
     //add filter to remove margin above html
     add_filter('show_admin_bar','__return_false');
 ?>
