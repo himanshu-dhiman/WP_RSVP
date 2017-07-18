@@ -73,4 +73,32 @@ h5{
     background-color: $black;
     color: $white;
 }
+.request-text{
+	@extend .marcellus-sc;
+	padding-top: 20px;
+	text-align:center;
+	font-size: 35px; 
+	color:$goldenrod;
+}
+.request-icon{
+	font-size:40px;
+	color:$goldenrod;
+}
+.modal-header{
+	@extend .marcellus-sc;
+	font-size: 30px;
+	background-color:$shade;
+	border-radius:15px 15px 0px 0px;
+}
+.modal-body{
+	@extend .marcellus-sc;
+	background-color:$white;	
+}
+.modal-content{
+    border-radius: 15px;
+}
+.modal-footer{
+	background-color:$shade;
+	border-radius:0px 0px 15px 15px;
+}
 @import 'media';
