@@ -12,7 +12,7 @@
 			<div class="col-sm-12 col-md-6 col-lg-6 about">
 				<h5 class="soiree">Soiree</h5>
 					<br>
-							<p class="lead" >ColoredCow celebrates every first Saturday of the month with family and friends. This custom has been started to take a little time off from work and enjoy some moments in life. we believe in sharing moments and learning with each other. Come and join us over music, food, drinks and some moments full of laughter and joy.</p>
+						<p class="lead" >ColoredCow celebrates every first Saturday of the month with family and friends. This custom has been started to take a little time off from work and enjoy some moments in life. we believe in sharing moments and learning with each other. Come and join us over music, food, drinks and some moments full of laughter and joy.</p>
 			</div>
 			<div class="col-sm-12 col-lg-6 col-md-6 latest-events">
 				<span class="theme">Theme</span><br> <br>
@@ -23,43 +23,37 @@
 		<hr>
 		<div class="container carousel-section">
 			<h1 class="carousel-head"><i class="fa fa-camera-retro fa-1x"></i>&nbsp;Event Gallery</h1>
+			<br>
 			<div id="carousel-example-indicators" class="carousel slide"  data-ride="carousel">
 				<ol class="carousel-indicators">
 					<li data-target="#carousel-example-indicators" data-slide-to="0" class="active"></li>
-					<li data-target="#carousel-example-indicators" data-slide-to="1">	</li>
-					<li data-target="#carousel-example-indicators" data-slide-to="2">	</li>
-					<li data-target="#carousel-example-indicators" data-slide-to="3">	</li>
-					<li data-target="#carousel-example-indicators" data-slide-to="4">	</li>
+					<li data-target="#carousel-example-indicators" data-slide-to="1"></li>
+					<li data-target="#carousel-example-indicators" data-slide-to="2"></li>
+					<li data-target="#carousel-example-indicators" data-slide-to="3"></li>
 				</ol>
 				<div class="carousel-inner" role="listbox">
 					<div class="carousel-item active">
 					  	<img class="d-block img-fluid images_carousel" src="<?php echo esc_url(get_template_directory_uri()."/rsvp_images/soiree1.jpg");?>" alt="First slide">
 					  	<div class="carousel-caption d-none d-md-block">
-							<p class="carousel-head">#SOIREE 1</p>  
+						<p class="carousel-head">#SOIREE 1</p>  
 					  	</div>
 					</div>
 					<div class="carousel-item">
 					  	<img class="d-block img-fluid images_carousel" src="<?php echo esc_url(get_template_directory_uri()."/rsvp_images/soiree2.jpg");?>" alt="Second slide">
 					  	<div class="carousel-caption d-none d-md-block">
-							<p class="carousel-head">#SOIREE 2</p>  
+						<p class="carousel-head">#SOIREE 2</p>  
 					  	</div>
 					</div>
 					<div class="carousel-item">
-					  	<img class="d-block img-fluid images_carousel" src="<?php echo esc_url(get_template_directory_uri()."/rsvp_images/soiree3.jpg");?>" alt="Third slide">
+					  	<img class="d-block img-fluid images_carousel" src="<?php echo esc_url(get_template_directory_uri()."/rsvp_images/soiree4.jpg");?>" alt="third slide">
 					  	<div class="carousel-caption d-none d-md-block">
-							<p class="carousel-head">#SOIREE 3</p>  
+						<p class="carousel-head">#SOIREE 3</p>  
 					  	</div>
 					</div>
 					<div class="carousel-item">
-					  	<img class="d-block img-fluid images_carousel" src="<?php echo esc_url(get_template_directory_uri()."/rsvp_images/soiree4.jpg");?>" alt="fourth slide">
+					  	<img class="d-block img-fluid images_carousel" src="<?php echo esc_url(get_template_directory_uri()."/rsvp_images/soiree5.jpg");?>" alt="fourth slide">
 					  	<div class="carousel-caption d-none d-md-block">
-							<p class="carousel-head">#SOIREE 4</p> 
-					  	</div>
-					</div>
-					<div class="carousel-item">
-					  	<img class="d-block img-fluid images_carousel" src="<?php echo esc_url(get_template_directory_uri()."/rsvp_images/soiree5.jpg");?>" alt="fifth slide">
-					  	<div class="carousel-caption d-none d-md-block">
-							<p class="carousel-head">#SOIREE 5</p>  
+						<p class="carousel-head">#SOIREE 4</p>  
 					  	</div>
 					</div>					
 				</div>
