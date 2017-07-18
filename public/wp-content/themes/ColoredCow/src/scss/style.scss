@@ -73,4 +73,31 @@ h5{
     background-color: $black;
     color: $white;
 }
+.theme{
+	@extend .marcellus-sc;
+	font-size:80px;
+	color:$white;
+}
+.latest-events{
+	text-align:center;
+}
+.images_carousel{
+	text-align:center;
+	display: block;
+	margin-left:150px;
+	width:800px;
+	height:500px;
+}
+.icon{
+	color:$white;
+	@extend .marcellus-sc;
+	font-size:40px;
+}
+.carousel-head{
+	color:$white;
+	@extend .marcellus-sc;
+	font-size:40px;
+	text-align:center;
+	padding-top:30px;
+}
 @import 'media';
