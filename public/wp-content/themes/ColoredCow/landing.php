@@ -22,7 +22,7 @@
 		</div>
 		<hr>
 		<div class="container carousel-section">
-			<h1 class="carousel-head"><i class="fa fa-camera-retro fa-1x"></i>&nbsp;Event Gallery</h1>
+			<div class="carousel-head"><i class="fa fa-camera-retro fa-1x"></i>&nbsp;Event Gallery</div>
 			<br>
 			<div id="carousel-example-indicators" class="carousel slide"  data-ride="carousel">
 				<ol class="carousel-indicators">
