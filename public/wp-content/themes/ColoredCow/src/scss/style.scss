@@ -45,21 +45,21 @@ body{
 	height:45px;
 }
 .admin-button {
-	@extend .oswald; 
+	@extend .font-oswald; 
 	font-size: 17px;
 }
 h5{
-	@extend .marcellus-sc; 
+	@extend .font-marcellus-sc; 
 	font-size: 85px; 
 	color:$goldenrod;
 }
-.lead{
-	@extend .open-sans;
+.soiree-description{
+	@extend .font-open-sans;
 	font-size: 20px;  
 	padding-bottom: 5px;
 }
 .about{
-	@extend .oswald;
+	@extend .font-oswald;
 	padding-left: 10px;  
 	color:$white;
 	font-size: 17px;
@@ -74,7 +74,7 @@ h5{
     color: $white;
 }
 .request-text{
-	@extend .marcellus-sc;
+	@extend .font-marcellus-sc;
 	padding-top: 20px;
 	text-align:center;
 	font-size: 35px; 
@@ -85,13 +85,13 @@ h5{
 	color:$goldenrod;
 }
 .modal-header{
-	@extend .marcellus-sc;
+	@extend .font-marcellus-sc;
 	font-size: 30px;
 	background-color:$shade;
 	border-radius:15px 15px 0px 0px;
 }
 .modal-body{
-	@extend .marcellus-sc;
+	@extend .font-marcellus-sc;
 	background-color:$white;	
 }
 .modal-content{
@@ -100,5 +100,35 @@ h5{
 .modal-footer{
 	background-color:$shade;
 	border-radius:0px 0px 15px 15px;
+}
+.theme{
+	@extend .font-marcellus-sc;
+	font-size:80px;
+	color:$white;
+}
+.latest-events{
+	text-align:center;
+}
+.icon{
+	color:$white;
+	@extend .font-marcellus-sc;
+	font-size:40px;
+}
+.carousel-head{
+	color:$white;
+	@extend .font-marcellus-sc;
+	font-size:60px;
+	text-align:center;
+	padding-top:30px;
+}
+.carousel-section{
+	max-width:1000px;
+}
+.images_carousel{
+	max-height:550px;
+	display: block;
+	width:100%;
+	height:40%;
+	overflow:hidden;
 }
 @import 'media';
