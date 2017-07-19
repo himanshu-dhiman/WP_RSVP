@@ -37,12 +37,12 @@ Text Domain: coloredcow
 	cursor: pointer;
 }
 body{
-	padding-top: 150px;
+	padding-top: 120px;
 	background-image: url('dist/img/bg.png');
 }
 .logo{
-	width:180px;
-	height:45px;
+	width:220px;
+	height:55px;
 }
 .admin-button {
 	@extend .font-oswald; 
@@ -50,7 +50,7 @@ body{
 }
 h5{
 	@extend .font-marcellus-sc; 
-	font-size: 85px; 
+	font-size: 100px; 
 	color:$goldenrod;
 }
 .soiree-description{
@@ -72,6 +72,34 @@ h5{
 	height:60px;
     background-color: $black;
     color: $white;
+}
+.request-text{
+	@extend .font-marcellus-sc;
+	padding-top: 20px;
+	text-align:center;
+	font-size: 35px; 
+	color:$goldenrod;
+}
+.request-icon{
+	font-size:40px;
+	color:$goldenrod;
+}
+.modal-header{
+	@extend .font-marcellus-sc;
+	font-size: 30px;
+	background-color:$shade;
+	border-radius:15px 15px 0px 0px;
+}
+.modal-body{
+	@extend .font-open-sans;
+	background-color:$white;	
+}
+.modal-content{
+    border-radius: 15px;
+}
+.modal-footer{
+	background-color:$shade;
+	border-radius:0px 0px 15px 15px;
 }
 .theme{
 	@extend .font-marcellus-sc;
@@ -102,5 +130,16 @@ h5{
 	width:100%;
 	height:40%;
 	overflow:hidden;
+}
+.thank-you-text{
+	@extend .font-marcellus-sc;
+	color:$goldenrod;
+	font-size:50px;
+}
+.guest-details{
+	@extend .font-open-sans;
+	padding-top:20px;
+	color:$white;
+	font-size:40px;
 }
 @import 'media';
