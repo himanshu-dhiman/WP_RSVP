@@ -45,21 +45,21 @@ body{
 	height:45px;
 }
 .admin-button {
-	@extend .oswald; 
+	@extend .font-oswald; 
 	font-size: 17px;
 }
 h5{
-	@extend .marcellus-sc; 
+	@extend .font-marcellus-sc; 
 	font-size: 85px; 
 	color:$goldenrod;
 }
-.lead{
-	@extend .open-sans;
+.soiree-description{
+	@extend .font-open-sans;
 	font-size: 20px;  
 	padding-bottom: 5px;
 }
 .about{
-	@extend .oswald;
+	@extend .font-oswald;
 	padding-left: 10px;  
 	color:$white;
 	font-size: 17px;
@@ -72,5 +72,35 @@ h5{
 	height:60px;
     background-color: $black;
     color: $white;
+}
+.theme{
+	@extend .font-marcellus-sc;
+	font-size:80px;
+	color:$white;
+}
+.latest-events{
+	text-align:center;
+}
+.icon{
+	color:$white;
+	@extend .font-marcellus-sc;
+	font-size:40px;
+}
+.carousel-head{
+	color:$white;
+	@extend .font-marcellus-sc;
+	font-size:60px;
+	text-align:center;
+	padding-top:30px;
+}
+.carousel-section{
+	max-width:1000px;
+}
+.images_carousel{
+	max-height:550px;
+	display: block;
+	width:100%;
+	height:40%;
+	overflow:hidden;
 }
 @import 'media';
