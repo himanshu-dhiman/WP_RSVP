@@ -5,23 +5,48 @@
  */
 
    	get_header();
+
+   	$currentdate=date('Y-m-d');
+   	$posts = get_posts(array(
+	'post_type'			=> 'event',
+	'meta_key'			=> 'date',
+	'orderby'			=> 'meta_value',
+	'order'				=> 'ASC'
+	));
 ?>
 <body>
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 col-md-6 col-lg-6 about">
-				<h5 class="soiree">Soiree</h5>
+				<div class="soiree">Soiree</div>
 					<br>
 						<p class="soiree-description" >ColoredCow celebrates every first Saturday of the month with family and friends. This custom has been started to take a little time off from work and enjoy some moments in life. we believe in sharing moments and learning with each other. Come and join us over music, food, drinks and some moments full of laughter and joy.</p>
 					<hr>
-				<h3 class="request-text">Wanna join the party?</h3>
-					<button type="button" class="btn btn-outline-warning btn-lg btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Request Invite
-					</button>
+				<div class="request-text">Wanna join the party?</div>
+				<br>
+					<a role="button" class="btn btn-warning btn-lg btn-block request-button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" data-id="<?php echo $id ?>">Request Invite
+					</a>
 			</div>
 			<div class="col-sm-12 col-lg-6 col-md-6 latest-events">
-				<span class="theme">Theme</span><br> <br>
-		        <span class="icon"><i class='fa fa-calendar'  aria-hidden='true'></i>&nbsp;Date</span><br><br> 
-		        <span class="icon"><i class='fa fa-map-marker fa-lg' aria-hidden='true'></i>&nbsp;Venue</span>
+			<?php		
+				foreach ($posts as $post) {
+				$id=$post->ID;
+				$content=$post->post_title;
+				$value=get_post_meta($id);
+				$date=$value['date'][0];
+				$venue=$value['venue'][0];
+				$theme=$value['theme'][0];
+		   		if($date>$currentdate){
+				?>
+					<div class="event-name"><?php echo $content ?></div>
+					<div class="theme"><?php echo $theme ?></div><br>
+		        	<div class="date"><i class='fa fa-calendar'  aria-hidden='true'></i>&nbsp;<?php echo date('l, jS F, Y', strtotime($date));?></div><br> 
+			        <div class="venue"><i class='fa fa-map-marker fa-lg' aria-hidden='true'></i>&nbsp;<?php echo $venue ?></div>
+		    		<?php
+					break;
+				}
+			}
+			?>
 			</div>
 		</div>
 		<hr>

@@ -49,9 +49,9 @@ body{
 	@extend .font-oswald; 
 	font-size: 17px;
 }
-h5{
+.soiree{
 	@extend .font-marcellus-sc; 
-	font-size: 100px; 
+	font-size: 90px; 
 	color:$goldenrod;
 }
 .soiree-description{
@@ -60,8 +60,7 @@ h5{
 	padding-bottom: 5px;
 }
 .about{
-	@extend .font-oswald;
-	padding-left: 10px;  
+	@extend .font-oswald; 
 	color:$white;
 	font-size: 17px;
 	text-align: justify;
@@ -78,7 +77,7 @@ h5{
 	@extend .font-marcellus-sc;
 	padding-top: 20px;
 	text-align:center;
-	font-size: 35px; 
+	font-size: 40px; 
 	color:$goldenrod;
 }
 .request-icon{
@@ -104,13 +103,13 @@ h5{
 }
 .theme{
 	@extend .font-marcellus-sc;
-	font-size:80px;
+	font-size:90px;
 	color:$white;
 }
 .latest-events{
 	text-align:center;
 }
-.icon{
+.date,.venue{
 	color:$white;
 	@extend .font-marcellus-sc;
 	font-size:40px;
@@ -142,5 +141,30 @@ h5{
 	padding-top:20px;
 	color:$white;
 	font-size:40px;
+}
+.event-name{
+	@extend .font-marcellus-sc;
+	color:$blue;
+	font-size:70px;
+}
+.all-events-name{
+	@extend .font-marcellus-sc;
+	color:$blue;
+	font-size:50px;	
+}
+.all-themes{
+	@extend .font-marcellus-sc;
+	font-size:70px;
+	color:$white;
+}
+.all-events-date,.all-events-venue{
+	color:$white;
+	@extend .font-marcellus-sc;
+	font-size:40px;
+}
+.request-button{
+	color:$white;
+	@extend .font-open-sans;
+	font-size:25px;
 }
 @import 'media';
