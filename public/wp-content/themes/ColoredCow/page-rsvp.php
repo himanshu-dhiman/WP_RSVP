@@ -6,7 +6,7 @@
 
    	get_header('rsvp');
 ?>
-<body>
+<body class="main-body">
 	<div class="container">
 	<br>
         <div class="card-title text-center thank-you-text">Looking forward to see you at the event.</div>

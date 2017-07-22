@@ -13,8 +13,9 @@
 	'orderby'			=> 'meta_value',
 	'order'				=> 'ASC'
 	));
+	get_template_part('templates/content','requestmodal');
 ?>
-<body>
+<body class="main-body">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12 col-md-6 col-lg-6 about">
@@ -24,7 +25,7 @@
 					<hr>
 				<div class="request-text">Wanna join the party?</div>
 				<br>
-					<a role="button" class="btn btn-warning btn-lg btn-block request-button" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" data-id="<?php echo $id ?>">Request Invite
+					<a role="button" class="btn btn-warning btn-lg btn-block request-button" data-toggle="modal" data-target="#request-modal" data-whatever="@mdo" data-id="<?php echo $id ?>">Request Invite
 					</a>
 			</div>
 			<div class="col-sm-12 col-lg-6 col-md-6 latest-events">
@@ -96,66 +97,7 @@
 					</a>
 			</div>
 			<br>
-		</div>
-
-		<div class="modal fade" id="exampleModal" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h3 class="modal-title">&nbsp;&nbsp;New Request</h3>
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
-                    </div>
-                    <form id="request_form">
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <div class="col-lg-12">
-                     	        	<label for="recipient-name" class="form-control-label">
-                                    	<div>Your Name:</div>
-                        	        </label>
-                                    <input type="text" class="form-control" placeholder="Full Name" name="request_name" id="request_name" maxlength="30" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <div class="col-lg-12">
-                                	<label for="recipient-name" class="form-control-label">
-                                    	<div>Your Email:</div>
-                                	</label>
-                                    <input type="email" class="form-control" placeholder="someone@example.com" name="request_emailid" id="request_emailid" maxlength="30" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                    	        <div class="col-lg-12">
-	                    	        <label for="recipient-number" class="form-control-label">
-	                                    <div>Mobile Number:</div>
-	                                </label>
-                                    <input type="number" class="form-control"  placeholder="10 digit mobile no." name="phonenumber" id="phonenumber" max="9999999999" required>
-                                </div>
-                            </div>  
-                            <div class="form-group">
-                                <div class="col-lg-12">
-                                	<label for="recipient-name" class="form-control-label">
-                                    	<div>Gender:</div>
-                                	</label>
-                                	<label class="custom-control custom-radio">
-                                    	<input name="request_gender" value="Male" type="radio" class="custom-control-input" required>
-                                    	<span class="custom-control-indicator"></span>
-                                    	<span class="custom-control-description">Male</span>
-                                	</label>
-                                	<label class="custom-control custom-radio">
-                                    	<input name="request_gender" value="Female" type="radio" class="custom-control-input" required>
-                                    	<span class="custom-control-indicator"></span>
-                                    	<span class="custom-control-description">Female</span>
-                                	</label>
-                                </div>
-                            </div>
-	                    </div>
-	                    <div class="modal-footer">
-	                        <button type="button" class="btn btn-primary"  id="submit_request">Request</button>
-	                    </div>
-                    </form> 
-                </div>
-            </div>
-        </div>
+		</div>	
 	</div>
 	<hr>
 </body>

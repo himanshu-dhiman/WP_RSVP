@@ -4,9 +4,10 @@
  * Template Name: All-Events
  */
 
-   get_header();
+    get_header();
+    get_template_part('templates/content','requestmodal');
 ?>
-<body>
+<body class="main-body">
     <div class="container">
         <?php
           	$posts = get_posts(array(
@@ -35,7 +36,7 @@
                     <br>
                 </div>
                 <div class="col-sm-12 col-md-4 col-lg-4 request-button">
-                    <a role="button" class="btn btn-warning btn-lg btn-block" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" data-id="<?php echo $id ?>">Request Invite
+                    <a role="button" class="btn btn-warning btn-lg btn-block" data-toggle="modal" data-target="#request-modal" data-whatever="@mdo" data-id="<?php echo $id ?>">Request Invite
                     </a>
                 </div>
             </div>
