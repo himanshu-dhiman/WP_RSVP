@@ -172,4 +172,7 @@ Text Domain: coloredcow
 	@extend .font-open-sans;
 	font-size:25px;
 }
+.capitalize{
+	text-transform:capitalize;
+}
 @import 'media';
