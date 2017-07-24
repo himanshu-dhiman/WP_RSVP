@@ -7,24 +7,28 @@
    	get_header();
 
    	$currentdate=date('Y-m-d');
-   	$posts = get_posts(array(
+   	$args=array(
 			'post_type'	=> 'event',
 			'meta_key'	=> 'date',
 			'orderby'	=> 'meta_value',
 			'order'		=> 'ASC'
-	));
+	);
+   	$event_query = new WP_Query($args);
 	get_template_part('templates/content','requestmodal');
-	foreach ($posts as $post) {
-		$id=$post->ID;
-		$content=$post->post_title;
-		$value=get_post_meta($id);
-		$date=$value['date'][0];
-		$venue=$value['venue'][0];
-		$theme=$value['theme'][0];
-   		if($date>$currentdate){
-			break;
-		}
-	}
+	if ($event_query->have_posts()){
+    	while($event_query->have_posts()){
+        $event_query->the_post();
+        $date=get_field('date');
+        if($date>$currentdate)
+        {
+        	$content=get_the_title();
+        	$id=get_the_ID();
+        	$venue=get_field('venue');
+        	$theme=get_field('theme');
+        	break;
+        }
+    }
+} 
 ?>
 <body class="main-body">
 	<div class="container">
