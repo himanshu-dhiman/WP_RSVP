@@ -39,7 +39,7 @@ function add_requested_guests(){
             }
         add_post_meta($post_id, 'email', $request_email);
         add_post_meta($post_id, 'phone', $request_phone);
-        add_post_meta($post_id, 'status', 'Requested');
+        add_post_meta($post_id, 'status', 'waiting for approval');
         add_post_meta($post_id, 'gender', $request_gender);
         add_post_meta($post_id, 'event_id', $request_event_id);
     }
