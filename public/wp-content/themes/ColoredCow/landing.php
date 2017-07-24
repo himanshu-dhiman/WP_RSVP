@@ -8,12 +8,23 @@
 
    	$currentdate=date('Y-m-d');
    	$posts = get_posts(array(
-	'post_type'			=> 'event',
-	'meta_key'			=> 'date',
-	'orderby'			=> 'meta_value',
-	'order'				=> 'ASC'
+			'post_type'	=> 'event',
+			'meta_key'	=> 'date',
+			'orderby'	=> 'meta_value',
+			'order'		=> 'ASC'
 	));
 	get_template_part('templates/content','requestmodal');
+	foreach ($posts as $post) {
+		$id=$post->ID;
+		$content=$post->post_title;
+		$value=get_post_meta($id);
+		$date=$value['date'][0];
+		$venue=$value['venue'][0];
+		$theme=$value['theme'][0];
+   		if($date>$currentdate){
+			break;
+		}
+	}
 ?>
 <body class="main-body">
 	<div class="container">
@@ -28,27 +39,12 @@
 					<a role="button" class="btn btn-warning btn-lg btn-block request-button" data-toggle="modal" data-target="#request-modal" data-whatever="@mdo" data-id="<?php echo $id ?>">Request Invite
 					</a>
 			</div>
-			<div class="col-sm-12 col-lg-6 col-md-6 latest-events">
-			<?php		
-				foreach ($posts as $post) {
-				$id=$post->ID;
-				$content=$post->post_title;
-				$value=get_post_meta($id);
-				$date=$value['date'][0];
-				$venue=$value['venue'][0];
-				$theme=$value['theme'][0];
-		   		if($date>$currentdate){
-				?>
-					<div class="event-name"><?php echo $content ?></div>
-					<div class="theme"><?php echo $theme ?></div><br>
-		        	<div class="date"><i class='fa fa-calendar'  aria-hidden='true'></i>&nbsp;<?php echo date('l, jS F, Y', strtotime($date));?></div><br> 
-			        <div class="venue"><i class='fa fa-map-marker fa-lg' aria-hidden='true'></i>&nbsp;<?php echo $venue ?></div>
-		    		<?php
-					break;
-				}
-			}
-			?>
-			</div>
+			<div class="col-sm-12 col-lg-6 col-md-6 latest-events">	
+				<div class="event-name"><?php echo $content ?></div>
+				<div class="theme"><?php echo $theme ?></div><br>
+	        	<div class="date"><i class='fa fa-calendar'  aria-hidden='true'></i>&nbsp;<?php echo date('l, jS F, Y', strtotime($date));?></div><br> 
+		        <div class="venue"><i class='fa fa-map-marker fa-lg' aria-hidden='true'></i>&nbsp;<?php echo $venue ?></div>
+		    </div>
 		</div>
 		<hr>
 		<div class="container carousel-section">

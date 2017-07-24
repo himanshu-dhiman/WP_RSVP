@@ -167,4 +167,9 @@ Text Domain: coloredcow
 	@extend .font-open-sans;
 	font-size:25px;
 }
+.event-button{
+	color:$white;
+	@extend .font-open-sans;
+	font-size:25px;
+}
 @import 'media';

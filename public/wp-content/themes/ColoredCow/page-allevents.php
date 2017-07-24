@@ -11,12 +11,12 @@
     <div class="container">
         <?php
           	$posts = get_posts(array(
-          	'post_type'			=> 'event',
-          	'meta_key'			=> 'date',
-          	'orderby'			=> 'meta_value',
-          	'order'				=> 'ASC'
-            ));
-            $currentdate=date('Y-m-d');
+                      	'post_type'	 => 'event',
+                        'meta_key'   => 'date',
+                        'orderby'    => 'meta_value',
+                      	'order'      => 'ASC'
+                    ));
+                    $currentdate=date('Y-m-d');
 
             foreach ($posts as $post) {
         	$id=$post->ID;
@@ -35,8 +35,8 @@
                     <div class="all-events-venue"><i class='fa fa-map-marker fa-lg' aria-hidden='true'></i>&nbsp;<?php echo $venue ?></div>
                     <br>
                 </div>
-                <div class="col-sm-12 col-md-4 col-lg-4 request-button">
-                    <a role="button" class="btn btn-warning btn-lg btn-block" data-toggle="modal" data-target="#request-modal" data-whatever="@mdo" data-id="<?php echo $id ?>">Request Invite
+                <div class="col-sm-12 col-md-4 col-lg-4 event-button">
+                    <a role="button" class="btn btn-warning btn-lg btn-block request-button" data-toggle="modal" data-target="#request-modal" data-whatever="@mdo" data-id="<?php echo $id ?>">Request Invite
                     </a>
                 </div>
             </div>
