@@ -55,18 +55,18 @@ $events_posts = get_posts(array(
 					$phone=$value['phone'][0];
 				?>	
 					<tr class="table-success">
-			        <td><?php echo $name ?></td>
-			        <td><?php echo $email ?></td>
-			        <td><?php echo $phone ?></td>
-			        <td><?php echo $gender ?></td>
-			        <td><?php echo $status ?></td>
-			        </tr>
+				        <td><?php echo $name ?></td>
+				        <td><?php echo $email ?></td>
+				        <td><?php echo $phone ?></td>
+				        <td><?php echo $gender ?></td>
+				        <td><?php echo $status ?></td>
+				    </tr>
 			    <?
 			        }
 			    ?>
 			        </tbody>
-			        </table>
+		        </table>
 			</div>
-			</div>
-			</div>
-			</body>
+		</div>
+	</div>
+</body>
