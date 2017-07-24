@@ -37,12 +37,12 @@
                             	<div>Gender:</div>
                         	</label>
                         	<label class="custom-control custom-radio">
-                            	<input name="request_gender" value="Male" type="radio" class="custom-control-input" required>
+                            	<input name="request_gender" value="male" type="radio" class="custom-control-input" required>
                             	<span class="custom-control-indicator"></span>
                             	<span class="custom-control-description">Male</span>
                         	</label>
                         	<label class="custom-control custom-radio">
-                            	<input name="request_gender" value="Female" type="radio" class="custom-control-input" required>
+                            	<input name="request_gender" value="female" type="radio" class="custom-control-input" required>
                             	<span class="custom-control-indicator"></span>
                             	<span class="custom-control-description">Female</span>
                         	</label>
