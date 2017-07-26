@@ -182,4 +182,10 @@ Text Domain: coloredcow
 	@extend .font-open-sans;
 	font-size:20px;
 }
+.confirm-status{
+	font-size:23px;
+}
+.pending-status{
+	font-size:23px;
+}
 @import 'media';

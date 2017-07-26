@@ -177,9 +177,13 @@
 											<td class="capitalize">'.$name.'</td>
 											<td>'.$email.'</td>
 											<td>'.$phone.'</td>
-											<td class="capitalize">'.$gender.'</td>
-											<td class="capitalize"><span class="label label-primary">'.$status.'</span></td>
-										</tr>';
+											<td class="capitalize">'.$gender.'</td>';
+											if($status=='confirm'){
+												$table_invitee_body.='<td class="capitalize confirm-status"><span class="badge badge-success">'.$status.'</span></td></tr>';
+											}
+											else{
+												$table_invitee_body.='<td class="capitalize pending-status"><span class="badge badge-danger">'.$status.'</span></td></tr>';
+											}
 			}
 			$table_invitee_body.=invited_guest_footer();
 			return $table_invitee_body;
@@ -208,7 +212,7 @@
 														<tr>
 															<th>Name</th>
 															<th>Email</th>
-															<th>Status</th>
+															<th>Category</th>
 															<th>Action</th>
 														</tr>
 													</thead>
@@ -222,7 +226,7 @@
 				'post_type' => 'guest',
 				'meta_key'=>'event_id',
 				'meta_value'=>$event_id,
-				'category_name'=>'waiting',
+				'category_name'=>'waiting,rejected',
 				);
 		$requested_guest_query = new WP_Query($requested_guest_post_args);
 		if ($requested_guest_query->have_posts()){
@@ -232,13 +236,18 @@
 				$name=get_the_title();
 				$guest_id=get_the_ID();
 				$email=get_field('email');
-				$cat=get_the_category();
+				$cat=get_the_category()[0]->cat_name;
 				$table_requested_body.=	'<tr class="table-success">
 											<td class="capitalize">'.$name.'</td>
 											<td>'.$email.'</td>
 											<td class="capitalize">'.$cat.'</td>
-											<td><button type="button" name="add" data-id="'.$guest_id.'" class="btn btn-success approve-guest" value="'.$event_id.'">Approve</button>&nbsp;&nbsp;<button type="button" name="reject" data-id="'.$guest_id.'" class="btn btn-danger reject-guest" value="'.$event_id.'">Reject</button></td>
-										</tr>';
+											<td><button type="button" name="add" data-id="'.$guest_id.'" class="btn btn-success approve-guest" value="'.$event_id.'">Approve</button>&nbsp;&nbsp';
+											if($cat=='Rejected'){
+												$table_requested_body.='<button type="button" name="reject" data-id="'.$guest_id.'" class="btn btn-danger reject-guest disabled" value="'.$event_id.'">Reject</button></td></tr>';
+											}
+											else{
+												$table_requested_body.='<button type="button" name="reject" data-id="'.$guest_id.'" class="btn btn-danger reject-guest" value="'.$event_id.'">Reject</button></td></tr>';
+											}
 			}
 			$table_requested_body.=requested_guest_footer();
 			return $table_requested_body;
