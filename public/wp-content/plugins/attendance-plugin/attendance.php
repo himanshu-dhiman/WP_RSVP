@@ -55,7 +55,7 @@ function show_guest_tables(){
         $table_request_footer='';
         $table_invitee_header.='<div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <div class="table-headings">Invited Guests</div>
+                                        <div class="table-headings">Invited Guests</div><br>
                                             <table class="table">
                                                 <thead>
                                                     <tr>
@@ -99,10 +99,10 @@ function show_guest_tables(){
             'category_name'=>'waiting',
             );
         $requested_guest_query = new WP_Query($requested_guest_post_args);
-        $table_request_header.='<br><br>
+        $table_request_header.='<br><br><hr>
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <div class="table-headings">Requested Guests</div>
+                                        <div class="table-headings">Guest Requests</div><br>
                                             <table class="table">
                                                 <thead>
                                                     <tr>
@@ -125,7 +125,7 @@ function show_guest_tables(){
                                     <td class="capitalize">'.$name.'</td>
                                     <td>'.$email.'</td>
                                     <td class="capitalize">'.$cat.'</td>
-                                    <td><button type="button" name="add" data-id="'.$guest_id.'" class="btn btn-success approve-guest">Approve</button>&nbsp;&nbsp;<button type="button" name="reject" data-id="'.$guest_id.'" class="btn btn-danger reject-guest">Reject</button></td>
+                                    <td><button type="button" name="add" data-id="'.$guest_id.'" class="btn btn-success approve-guest" value="'.$event_id.'">Approve</button>&nbsp;&nbsp;<button type="button" name="reject" data-id="'.$guest_id.'" class="btn btn-danger reject-guest" value="'.$event_id.'">Reject</button></td>
                                 </tr>';
             }
             echo $table_request_body;               
@@ -153,17 +153,18 @@ function show_approved_guests(){
         $table_allguests_footer='';
         $table_allguests_header.='<div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Email</th>
-                                                    <th>Phone No.</th>
-                                                    <th>Gender</th>
-                                                    <th>Category</th>
-                                                    </tr>
-                                                </thead>
-                                            <tbody>';
+                                        <div class="table-headings">Your Guest List</div><br>
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Name</th>
+                                                        <th>Email</th>
+                                                        <th>Phone No.</th>
+                                                        <th>Gender</th>
+                                                        <th>Category</th>
+                                                        </tr>
+                                                    </thead>
+                                                <tbody>';
         echo $table_allguests_header;
         if ($all_guest_query->have_posts()){    
             while($all_guest_query->have_posts()){
@@ -209,6 +210,7 @@ add_action('wp_ajax_nopriv_approve_guests','approve_guests');
 function reject_guests(){
     if(isset($_POST['reject_guest_id'])){
         $guest_id=$_POST['reject_guest_id'];
+        var_dump($guest_id);
         wp_set_post_categories($guest_id,array(3));
     }
     wp_die();

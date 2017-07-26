@@ -10,14 +10,16 @@ $event_post_args=array(
 <body class="attendance-body">
 	<div class="container">
 		<br>
+		<div class="guest-details-heading">Guest Details</div>
+		<div class="guest-details-description">Here, you can see the Guest details of the guests you've approved or the Guest Attendance lists for each Event at once.</div><hr>
 		<div class="row">
 			<div class="col-lg-4 col-md-4 col-sm-12">
-					<button class="btn btn-block btn-primary show-all-guests" type="button">See All Guests</button>
+					<button class="btn btn-block btn-lg btn-primary show-all-guests" type="button">Your Guest List</button>
   			</div>
 			&nbsp;&nbsp;<b>OR</b>&nbsp;&nbsp;
 			<div class="col-lg-4 col-md-4 col-sm-12">
 				<div class="dropdown">
-  					<button class="btn btn-block btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Event</button>
+  					<button class="btn btn-block btn-lg btn-primary dropdown-toggle" type="button" data-toggle="dropdown">See Guest List for Event</button>
   					<div class="dropdown-menu" aria-labelledby="dropdown-menu-button">
   						<?php 
   							if ($event_query->have_posts()){

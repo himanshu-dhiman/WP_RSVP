@@ -174,4 +174,12 @@ Text Domain: coloredcow
 	@extend .font-open-sans;
 	font-size:30px;
 }
+.guest-details-heading{
+	@extend .font-open-sans;
+	font-size:40px;
+}
+.guest-details-description{
+	@extend .font-open-sans;
+	font-size:20px;
+}
 @import 'media';

@@ -65,6 +65,8 @@ $(".show-all-guests").on("click",function(){
 
 $(document).on("click", ".approve-guest", function(){
     var approve_guest_id=$(this).data('id');
+    var event_id=$(this).val();
+    console.log(event_id);
     console.log(approve_guest_id);
     guest_data="action=approve_guests&approve_guest_id="+approve_guest_id;
     $.ajax({
@@ -72,7 +74,7 @@ $(document).on("click", ".approve-guest", function(){
         url:PARAMS.ajaxurl,
         data:guest_data,
         success:function(e){
-            $(".tables").html(e);
+            ajax_updated_tables(event_id);
         }
     });
 });
@@ -80,15 +82,33 @@ $(document).on("click", ".approve-guest", function(){
 
 $(document).on("click", ".reject-guest", function(){
     var reject_guest_id=$(this).data('id');
+    var event_id=$(this).val();
+    console.log(event_id);
     console.log(reject_guest_id);
     guest_data="action=reject_guests&reject_guest_id="+reject_guest_id;
     $.ajax({
         type: 'POST',
         url:PARAMS.ajaxurl,
-        data:event_data,
+        data:guest_data,
         success:function(e){
-           $(".tables").html(e);
+            console.log(event_id);
+            ajax_updated_tables(event_id);
         }
     });
 });
+
+function ajax_updated_tables(event_id){
+    var attendance_event_id=event_id;
+    console.log(attendance_event_id);
+    event_data="action=show_guest_tables&attendance_event_id="+attendance_event_id;
+    console.log(event_data);
+    $.ajax({
+        type: 'POST',
+        url:PARAMS.ajaxurl,
+        data:event_data,
+        success:function(e){
+            $(".tables").html(e);
+        }
+    });
+}
 });
