@@ -60,8 +60,8 @@
 	function show_approved_guests(){
 		{
 			$all_guest_post_args=array(
-				'post_type' => 'guest',
-				'category_name' => 'approved'
+					'post_type' => 'guest',
+					'category_name' => 'approved'
 				);
 			$all_guest_query = new WP_Query($all_guest_post_args);
 			$table_allguests_header='';
@@ -78,25 +78,25 @@
 															<th>Phone No.</th>
 															<th>Gender</th>
 															<th>Category</th>
-															</tr>
-														</thead>
+														</tr>
+													</thead>
 													<tbody>';
 			echo $table_allguests_header;
 			if ($all_guest_query->have_posts()){    
 				while($all_guest_query->have_posts()){
-				$all_guest_query->the_post();
-				$phone=get_field('phone');
-				$name=get_the_title();
-				$email=get_field('email');
-				$cat=get_the_category()[0]->cat_name;
-				$gender=get_field('gender');
-				$table_allguests_body.='<tr class="table-success">
-											<td class="capitalize">'.$name.'</td>
-											<td>'.$email.'</td>
-											<td>'.$phone.'</td>
-											<td class="capitalize">'.$gender.'</td>
-											<td class="capitalize">'.$cat.'</td>
-										</tr>';
+					$all_guest_query->the_post();
+					$phone=get_field('phone');
+					$name=get_the_title();
+					$email=get_field('email');
+					$cat=get_the_category()[0]->cat_name;
+					$gender=get_field('gender');
+					$table_allguests_body.='<tr class="table-success">
+												<td class="capitalize">'.$name.'</td>
+												<td>'.$email.'</td>
+												<td>'.$phone.'</td>
+												<td class="capitalize">'.$gender.'</td>
+												<td class="capitalize">'.$cat.'</td>
+											</tr>';
 				}
 				echo $table_allguests_body;
 			}
@@ -158,11 +158,11 @@
 	function invited_guest_body($event_id)
 	{
 		$invited_guest_post_args=array(
-					'post_type' => 'guest',
-					'meta_key'=>'event_id',
-					'meta_value'=>$event_id,
-					'category_name'=>'approved'
-				);
+				'post_type' => 'guest',
+				'meta_key'=>'event_id',
+				'meta_value'=>$event_id,
+				'category_name'=>'approved'
+			);
 		$invited_guest_query = new WP_Query($invited_guest_post_args);
 		if ($invited_guest_query->have_posts()){    
 			$table_invitee_body=invited_guest_header();
@@ -216,7 +216,7 @@
 															<th>Action</th>
 														</tr>
 													</thead>
-												<tbody>';
+													<tbody>';
 		return $table_requested_header;
 	}
 
@@ -227,7 +227,7 @@
 				'meta_key'=>'event_id',
 				'meta_value'=>$event_id,
 				'category_name'=>'waiting,rejected',
-				);
+			);
 		$requested_guest_query = new WP_Query($requested_guest_post_args);
 		if ($requested_guest_query->have_posts()){
 			$table_requested_body=requested_guest_header();
