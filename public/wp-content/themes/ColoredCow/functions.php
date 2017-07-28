@@ -19,30 +19,32 @@
         }
         add_action('wp_enqueue_scripts','cc_styles');
     }
-        add_filter('show_admin_bar','__return_false');
+    add_filter('show_admin_bar','__return_false');
 
     function add_requested_guests(){
-        if(isset($_POST['request_name'])){
+        if( ! isset($_POST['request_name'])):
+            return;
+        else :
             $request_name=$_POST['request_name'];
             $request_email=$_POST['request_emailid'];
             $request_phone=$_POST['phonenumber'];
             $request_gender=$_POST['request_gender'];
             $request_event_id=$_POST['event_id'];        
             $this_post = array(
-              'post_title'    => $request_name,
-              'post_status'   => 'publish',
-              'post_type'     => 'guest',
-              'post_category' => array(4),
-             );
+                'post_title'    => $request_name,
+                'post_status'   => 'publish',
+                'post_type'     => 'guest',
+                'post_category' => array(4),
+            );
             $post_id = wp_insert_post( $this_post );
-                if( !$post_id ){
-                    wp_send_json_error();
-                }
+            if( !$post_id ){
+                wp_send_json_error();
+            }
             add_post_meta($post_id, 'email', $request_email);
             add_post_meta($post_id, 'phone', $request_phone);
             add_post_meta($post_id, 'gender', $request_gender);
             add_post_meta($post_id, 'event_id', $request_event_id);
-        }
+        endif;
     }
     add_action('wp_ajax_add_requested_guests','add_requested_guests');
     add_action('wp_ajax_nopriv_add_requested_guests','add_requested_guests');
