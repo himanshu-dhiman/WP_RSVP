@@ -6,9 +6,9 @@
 					<tr>
 						<th>Name</th>
 						<th>Email</th>
-						<th>Phone No.</th>
 						<th>Gender</th>
 						<th>Status</th>
+						<th>Category</th>
 					</tr>
 				</thead>
 				<tbody>

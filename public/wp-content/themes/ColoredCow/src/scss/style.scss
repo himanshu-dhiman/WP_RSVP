@@ -188,4 +188,9 @@ Text Domain: coloredcow
 .pending-status{
 	font-size:20px;
 }
+.see-all-events-link{
+	@extend .font-open-sans;
+	font-size:30px;
+	position: bottom;
+}
 @import 'media';

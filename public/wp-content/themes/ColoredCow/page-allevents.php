@@ -4,7 +4,7 @@
  * Template Name: All-Events
  */
 
-    get_header();
+    get_header('allevents');
     get_template_part('templates/content','requestmodal');
 ?>
 <body class="main-body">

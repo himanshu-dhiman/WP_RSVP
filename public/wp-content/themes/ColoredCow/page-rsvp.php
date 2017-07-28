@@ -17,7 +17,7 @@
             <div><i class="fa fa-envelope-open-o" aria-hidden="true"></i>&nbsp;&nbsp;himanshu@coloredcow.in</div>
             <div><i class="fa fa-mobile" aria-hidden="true"></i>&nbsp;&nbsp;+91-9808014227</div>
             <hr>
-            <a href="<?php echo home_url(); ?>" class="btn btn-success btn-lg ">Confirm Your Presence</a>
+            <a href="<?php echo home_url(); ?>" class="btn btn-success btn-lg ">See more Events</a>
         </div>
     </div>
 </body>
