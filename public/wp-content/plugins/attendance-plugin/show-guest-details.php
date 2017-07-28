@@ -18,15 +18,15 @@ $event_post_args=array(
   					<button class="btn btn-block btn-lg btn-primary dropdown-toggle" type="button" data-toggle="dropdown">See Guest List for Event</button>
   					<div class="dropdown-menu" aria-labelledby="dropdown-menu-button">
   						<?php 
-  							if ($event_query->have_posts()){
-				                while($event_query->have_posts()){
+  							if ( $event_query->have_posts() ) :
+				                while( $event_query->have_posts() ) :
 				                $event_query->the_post();
 				                $event_id=get_the_ID();
 				        ?>
-    					<a class="dropdown-item" href="#" data-id="<?php echo $event_id; ?>"><?php echo get_the_title(); ?></a>
-  						<? 
-  						}
-  						} 
+    							<a class="dropdown-item" href="#" data-id="<?php echo $event_id; ?>"><?php echo get_the_title(); ?></a>
+  						<?php 
+	  							endwhile;
+	  						endif;
   						?>
   					</div>
 				</div>
