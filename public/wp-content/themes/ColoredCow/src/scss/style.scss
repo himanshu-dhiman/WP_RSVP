@@ -167,4 +167,30 @@ Text Domain: coloredcow
 	@extend .font-open-sans;
 	font-size:25px;
 }
+.capitalize{
+	text-transform:capitalize;
+}
+.table-headings{
+	@extend .font-open-sans;
+	font-size:30px;
+}
+.guest-details-heading{
+	@extend .font-open-sans;
+	font-size:40px;
+}
+.guest-details-description{
+	@extend .font-open-sans;
+	font-size:20px;
+}
+.confirm-status{
+	font-size:20px;
+}
+.pending-status{
+	font-size:20px;
+}
+.see-all-events-link{
+	@extend .font-open-sans;
+	font-size:30px;
+	position: bottom;
+}
 @import 'media';

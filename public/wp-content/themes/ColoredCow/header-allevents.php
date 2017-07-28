@@ -19,7 +19,7 @@
 		<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 			<ul class="navbar-nav">
 				<li class="nav-item active">
-					<a role="button" class="btn btn-outline-secondary admin-button" href="<?php echo get_permalink(get_page_by_path( 'all-events' )) ?>">ALL EVENTS</a>
+					<a role="button" class="btn btn-outline-secondary admin-button" href="<?php echo home_url(); ?>">HOME</a>
 					&nbsp;
 					<a role="button" class="btn btn-outline-secondary admin-button" href="<?php echo wp_login_url(); ?>">
 						ADMINISTRATOR LOGIN<span class="sr-only">(current)</span>

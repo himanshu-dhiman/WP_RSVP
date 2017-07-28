@@ -1,72 +1,62 @@
 <?php
-$guest_posts = get_posts(array(
-	'post_type'	=> 'guest',
-	'orderby'	=> 'ID',
-	));
-
-$events_posts = get_posts(array(
-	'post_type'	=> 'event',
-	'meta_key'	=> 'date',
-	'orderby'	=> 'meta_value',
-	'order'		=> 'ASC'
-	));
-?>
+$event_post_args=array(
+	    'post_type' => 'event',
+	    'meta_key'  => 'date',
+	    'orderby'   => 'meta_value',
+	    'order'     => 'ASC'
+	);
+	$event_query = new WP_Query($event_post_args);
+	?>
 <body class="attendance-body">
 	<div class="container">
 		<br>
+		<div class="guest-details-heading">Guest Details</div>
+		<div class="guest-details-description">Here, you can see the Guest details of the guests you've approved or the Guest Attendance lists for each Event at once.</div><hr>
 		<div class="row">
 			<div class="col-lg-4 col-md-4 col-sm-12">
 				<div class="dropdown">
-  					<button class="btn btn-block btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Select Event</button>
+  					<button class="btn btn-block btn-lg btn-primary dropdown-toggle" type="button" data-toggle="dropdown">See Guest List for Event</button>
   					<div class="dropdown-menu" aria-labelledby="dropdown-menu-button">
   						<?php 
-  							foreach ($events_posts as $event_post) {
-						?>
-    					<a class="dropdown-item" href="#" data-id="<?php echo $event_post->ID; ?>"><?php echo $event_post->post_title ?></a>
+  							if ( $event_query->have_posts() ) :
+				                while( $event_query->have_posts() ) :
+				                $event_query->the_post();
+				                $event_id=get_the_ID();
+				        ?>
+    							<a class="dropdown-item" href="#" data-id="<?php echo $event_id; ?>"><?php echo get_the_title(); ?></a>
   						<?php 
-  						} 
+	  							endwhile;
+	  						endif;
   						?>
   					</div>
 				</div>
 			</div>
+			&nbsp;&nbsp;<b>OR</b>&nbsp;&nbsp;
+			<div class="col-lg-4 col-md-4 col-sm-12">
+					<button class="btn btn-block btn-lg btn-primary show-all-guests" type="button">Your Guest List</button>
+  			</div>
+				
 		</div>
-<br><br>
-		<div class="row">
-			<div class="col-lg-12 col-md-12 col-sm-12">
-				<table class="table">
-					<thead>
-						<tr>
-							<th>Name</th>
-							<th>Email</th>
-							<th>Phone No.</th>
-							<th>Gender</th>
-							<th>Status</th>
-						</tr>
-					</thead>
-				<tbody>
-				<?php 
-					foreach ($guest_posts as $guest_post) {
-					$id=$guest_post->ID;
-					$name=$guest_post->post_title;
-					$value=get_post_meta($id);
-					$email=$value['email'][0];
-					$status=$value['status'][0];
-					$gender=$value['gender'][0];
-					$phone=$value['phone'][0];
-				?>	
-					<tr class="table-success">
-			        <td><?php echo $name ?></td>
-			        <td><?php echo $email ?></td>
-			        <td><?php echo $phone ?></td>
-			        <td><?php echo $gender ?></td>
-			        <td><?php echo $status ?></td>
-			        </tr>
-			    <?
-			        }
-			    ?>
-			        </tbody>
-			        </table>
+		<br><br>
+		<div id="tables">
+			<div id="all-guests-table">
+				<?php
+					require('views/all-guest-table-header.php');	
+					require('views/guest-table-footer.php');
+				?>
 			</div>
+			<div id="invited-guests-table">	
+				<?php
+					require('views/invited-guest-table-header.php');
+					require('views/guest-table-footer.php');
+				?>
 			</div>
+			<div id="guest-request-table">
+				<?php
+					require('views/guest-request-table-header.php');
+					require('views/guest-table-footer.php');
+				?>
 			</div>
-			</body>
+		</div>
+	</div>
+</body>

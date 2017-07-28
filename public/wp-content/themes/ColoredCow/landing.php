@@ -7,13 +7,28 @@
    	get_header();
 
    	$currentdate=date('Y-m-d');
-   	$posts = get_posts(array(
-	'post_type'			=> 'event',
-	'meta_key'			=> 'date',
-	'orderby'			=> 'meta_value',
-	'order'				=> 'ASC'
-	));
+   	$args=array(
+			'post_type'	=> 'event',
+			'meta_key'	=> 'date',
+			'orderby'	=> 'meta_value',
+			'order'		=> 'ASC'
+	);
+   	$event_query = new WP_Query($args);
 	get_template_part('templates/content','requestmodal');
+	if ($event_query->have_posts()){
+    	while($event_query->have_posts()){
+        $event_query->the_post();
+        $date=get_field('date');
+        if($date>$currentdate)
+        {
+        	$content=get_the_title();
+        	$id=get_the_ID();
+        	$venue=get_field('venue');
+        	$theme=get_field('theme');
+        	break;
+        }
+    }
+} 
 ?>
 <body class="main-body">
 	<div class="container">
@@ -25,30 +40,15 @@
 					<hr>
 				<div class="request-text">Wanna join the party?</div>
 				<br>
-					<a role="button" class="btn btn-warning btn-lg btn-block request-button" data-toggle="modal" data-target="#request-modal" data-whatever="@mdo" data-id="<?php echo $id ?>">Request Invite
+					<a role="button" class="btn btn-warning btn-lg btn-block request-button" data-toggle="modal" data-target="#request-modal" data-id="<?php echo $id ?>">Request Invite
 					</a>
 			</div>
-			<div class="col-sm-12 col-lg-6 col-md-6 latest-events">
-			<?php		
-				foreach ($posts as $post) {
-				$id=$post->ID;
-				$content=$post->post_title;
-				$value=get_post_meta($id);
-				$date=$value['date'][0];
-				$venue=$value['venue'][0];
-				$theme=$value['theme'][0];
-		   		if($date>$currentdate){
-				?>
-					<div class="event-name"><?php echo $content ?></div>
-					<div class="theme"><?php echo $theme ?></div><br>
-		        	<div class="date"><i class='fa fa-calendar'  aria-hidden='true'></i>&nbsp;<?php echo date('l, jS F, Y', strtotime($date));?></div><br> 
-			        <div class="venue"><i class='fa fa-map-marker fa-lg' aria-hidden='true'></i>&nbsp;<?php echo $venue ?></div>
-		    		<?php
-					break;
-				}
-			}
-			?>
-			</div>
+			<div class="col-sm-12 col-lg-6 col-md-6 latest-events">	
+				<div class="event-name"><?php echo $content ?></div>
+				<div class="theme"><?php echo $theme ?></div><br>
+	        	<div class="date"><i class='fa fa-calendar'  aria-hidden='true'></i>&nbsp;<?php echo date('l, jS F, Y', strtotime($date));?></div><br> 
+		        <div class="venue"><i class='fa fa-map-marker fa-lg' aria-hidden='true'></i>&nbsp;<?php echo $venue ?></div>
+		    </div>
 		</div>
 		<hr>
 		<div class="container carousel-section">
@@ -87,14 +87,14 @@
 					  	</div>
 					</div>					
 				</div>
-					<a class="carousel-control-prev" href="#carousel-indicators" role="button" data-slide="prev">
-						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span class="sr-only">Previous</span>
-					</a>
-					<a class="carousel-control-next" href="#carousel-indicators" role="button" data-slide="next">
-						<span class="carousel-control-next-icon" aria-hidden="true"></span>
-						<span class="sr-only">Next</span>
-					</a>
+				<a class="carousel-control-prev" href="#carousel-indicators" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#carousel-indicators" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
 			</div>
 			<br>
 		</div>	
