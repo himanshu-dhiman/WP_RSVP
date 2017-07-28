@@ -19,7 +19,7 @@
     "require": {
         "wordpress": "4.*",
         "fancyguy/webroot-installer": "1.0.0",
-	"mandrill/mandrill": "1.0.*"
+	    "mandrill/mandrill": "1.0.*"
     },
     "extra": {
         "webroot-dir": "public/wp",
