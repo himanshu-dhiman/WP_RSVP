@@ -51,7 +51,7 @@ Text Domain: coloredcow
 }
 .soiree{
 	@extend .font-marcellus-sc; 
-	font-size: 90px; 
+	font-size: 70px; 
 	color:$goldenrod;
 }
 .soiree-description{
@@ -62,7 +62,7 @@ Text Domain: coloredcow
 .about{
 	@extend .font-oswald; 
 	color:$white;
-	font-size: 17px;
+	font-size: 18px;
 	text-align: justify;
 }
 .footer{
@@ -77,11 +77,11 @@ Text Domain: coloredcow
 	@extend .font-marcellus-sc;
 	padding-top: 20px;
 	text-align:center;
-	font-size: 40px; 
+	font-size: 30px; 
 	color:$goldenrod;
 }
 .request-icon{
-	font-size:40px;
+	font-size:30px;
 	color:$goldenrod;
 }
 .modal-header{
@@ -103,7 +103,7 @@ Text Domain: coloredcow
 }
 .theme{
 	@extend .font-marcellus-sc;
-	font-size:90px;
+	font-size:70px;
 	color:$white;
 }
 .latest-events{
@@ -112,12 +112,12 @@ Text Domain: coloredcow
 .date,.venue{
 	color:$white;
 	@extend .font-marcellus-sc;
-	font-size:40px;
+	font-size:30px;
 }
 .carousel-head{
 	color:$white;
 	@extend .font-marcellus-sc;
-	font-size:60px;
+	font-size:55px;
 	text-align:center;
 	padding-top:30px;
 }
@@ -145,22 +145,22 @@ Text Domain: coloredcow
 .event-name{
 	@extend .font-marcellus-sc;
 	color:$blue;
-	font-size:70px;
+	font-size:55px;
 }
 .all-events-name{
 	@extend .font-marcellus-sc;
 	color:$blue;
-	font-size:50px;	
+	font-size:35px;	
 }
 .all-themes{
 	@extend .font-marcellus-sc;
-	font-size:70px;
+	font-size:60px;
 	color:$white;
 }
 .all-events-date,.all-events-venue{
 	color:$white;
 	@extend .font-marcellus-sc;
-	font-size:40px;
+	font-size:30px;
 }
 .request-button{
 	color:$white;
