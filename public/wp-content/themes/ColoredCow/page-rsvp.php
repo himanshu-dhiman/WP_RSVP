@@ -12,9 +12,9 @@
             'meta_value'=>$email,
         );
     $guest_query = new WP_Query($guest_post_args);
-    if ($guest_post_query->have_posts() ) :
-        while($guest_post_query->have_posts() ) :
-                $guest_post_query->the_post();
+    if ($guest_query->have_posts() ) :
+        while($guest_query->have_posts() ) :
+                $guest_query->the_post();
                 $name=get_the_title();
                 $guest_id=get_the_ID();
                 $email=get_field('email');
