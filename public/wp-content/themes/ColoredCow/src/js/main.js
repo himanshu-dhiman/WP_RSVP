@@ -24,12 +24,12 @@ jQuery(document).ready(function($) {
 			url:PARAMS.ajaxurl,
 			data:request_form,
 			success:function(e){
-				alert("Success");
+				alert("Request Submitted");
 			}
 		});
 	}
 
-	$(".dropdown-item").on("click",function(){
+	$(".event-guest").on("click",function(){
 		var attendance_event_id=$(this).data('id');
 		$.ajax({
 			type: 'POST',
@@ -126,4 +126,18 @@ jQuery(document).ready(function($) {
 		});
 	}
 
+	$(".invitation").on("click",function(){
+		var event_id=$(this).data('id');
+		$.ajax({
+			type: 'POST',
+			url:PARAMS.ajaxurl,
+			data:{
+				action:'send_invitation_mail',
+				event_id:event_id
+			},
+			success:function(e){
+				console.log(e);
+			}
+		});
+	});
 });

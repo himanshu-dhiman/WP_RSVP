@@ -1,6 +1,6 @@
 <?php
 	/*
-	Plugin Name: Attendance
+	Plugin Name: Invites Management
 	Description: Plugin for displaying Guests Status according to Events
 	Version: 1.0
 	*/
@@ -9,9 +9,10 @@
 	add_action( 'admin_enqueue_scripts', 'cc_plugin_styles' );
 	add_action( 'admin_enqueue_scripts', 'requested_guest_body' );
 	add_action( 'admin_enqueue_scripts', 'invited_guest_body' );
+	add_action( 'wp_ajax_request_approved_mail', 'request_approved_mail' );
 
 	function attendance_page(){
-		add_menu_page( 'Attendance', 'Attendance', 'manage_options', 'attendance', 'attendance' );
+		add_menu_page( 'Invites Management', 'Invites Management', 'manage_options', 'attendance', 'attendance' );
 	}
 
 	function attendance(){
@@ -101,6 +102,7 @@
 			$guest_id=$_POST['approve_guest_id'];
 			update_post_meta( $guest_id, 'status', 'confirm' );
 			wp_set_post_categories( $guest_id, array(2) );
+			request_approved_mail($guest_id);
 		endif;
 		wp_die();
 	}
@@ -188,4 +190,142 @@
 		endif;
 	}
 
+	function send_invitation_mail() {
+		require_once(__DIR__.'/vendor/mandrill/mandrill/src/Mandrill.php');
+		$event_id=$_POST['event_id'];
+		$approved_guest_post_args=array(
+			'post_type' => 'guest',
+			'category_name'=>'approved',
+			'posts_per_page' => -1
+		);
+		$event_post_args=array(
+			'post_type' => 'event',
+			'ID'=>$event_id,
+			'posts_per_page' => -1
+		);
+		$event_query = new WP_Query($event_post_args);
+		$guests_query= new WP_Query($approved_guest_post_args);
+		if( $event_query->have_posts() ) :
+			if($guests_query->have_posts() ) :
+				while( $event_query->have_posts() ) :
+					$event_query->the_post();
+					$event_name=get_the_title();
+					$event_theme=get_field('theme');
+					$event_date=get_field('date');
+					$event_venue=get_field('venue');
+					while ( $guests_query->have_posts() ) :
+						$guests_query->the_post();
+						$mandrill = new Mandrill('Lx5txGX1JDBaRLxHvy2rVA');
+						$guest_name=get_the_title();
+						$guest_email=get_field('email');
+						$recipients[] = array(
+      					  	'email' => $guest_email,
+        					'name' => $guest_name,
+					        'type' => 'to'
+					    );
+					endwhile;
+				endwhile;
+			endif;
+		endif;
+		var_dump($recipients);
+		$template_name = 'Invitation';
+		$template_content = '';
+		$message = array(
+			'subject' => 'Invitation for '.$event_name,
+			'from_email' => 'himanshu@coloredcow.com',
+			'from_name' => 'Himanshu Dhiman',
+			'to' => $recipients,
+			'preserve_recipients' => false,
+			'bcc_address' => 'hkd26dhi@gmail.com',
+			'merge' => true,
+			'merge_language' => 'mailchimp',
+			'inline_css' => true,
+			'global_merge_vars' => array(
+				array(
+					'name' => 'event_name',
+					'content' => $event_name
+				),
+			),
+			'merge_vars' => array(
+				array(
+					'rcpt' => 'recipient.email@example.com',
+					'vars' => array(
+						array(
+							'name' => 'merge2',
+							'content' => 'merge2 content'
+						)
+					)
+				)
+			),
+			'tags' => array('password-resets'),
+			'metadata' => array('website' => 'www.coloredcow.com')
+		);
+		$async = false;
+		$ip_pool = 'Main Pool';
+		$result = $mandrill->messages->sendTemplate($template_name,$template_content,$message, $async, $ip_pool);
+		var_dump($result);
+		wp_die();
+	}
+	add_action( 'wp_ajax_send_invitation_mail', 'send_invitation_mail' );
+
+	function request_approved_mail($guest_id){
+        require_once(__DIR__.'/vendor/mandrill/mandrill/src/Mandrill.php');
+        var_dump($guest_id);
+        $guest_post_args=array(
+            'post_type' => 'guest',
+            'p'=>$guest_id
+        );
+        $guests_query= new WP_Query($guest_post_args);
+            if($guests_query->have_posts() ) :
+                while ( $guests_query->have_posts() ) :
+                    $guests_query->the_post();
+                    $mandrill = new Mandrill('Lx5txGX1JDBaRLxHvy2rVA');
+                    $guest_name=get_the_title();
+                    $guest_email=get_field('email');
+                    $recipients[] = array(
+                        'email' => $guest_email,
+                        'name' => $guest_name,
+                        'type' => 'to'
+                    );
+                endwhile;
+            endif;
+            var_dump($recipients);
+        $template_name = 'Approved';
+        $template_content = '';
+        $message = array(
+            'subject' => 'Request Accepted',
+            'from_email' => 'himanshu@coloredcow.com',
+            'from_name' => 'Himanshu Dhiman',
+            'to' => $recipients,
+            'preserve_recipients' => false,
+            'bcc_address' => 'hkd26dhi@gmail.com',
+            'merge' => true,
+            'merge_language' => 'mailchimp',
+            'inline_css' => true,
+            'global_merge_vars' => array(
+                array(
+                    'name' => 'event_name',
+                    'content' => 'ColoredCow-Soiree'
+                ),
+            ),
+            'merge_vars' => array(
+                array(
+                    'rcpt' => 'recipient.email@example.com',
+                    'vars' => array(
+                        array(
+                            'name' => 'merge2',
+                            'content' => 'merge2 content'
+                        )
+                    )
+                )
+            ),
+            'tags' => array('password-resets'),
+            'metadata' => array('website' => 'www.coloredcow.com')
+        );
+        $async = false;
+        $ip_pool = 'Main Pool';
+        $result = $mandrill->messages->sendTemplate($template_name,$template_content,$message, $async, $ip_pool);
+        var_dump($result);
+        wp_die();
+    }
 ?>
