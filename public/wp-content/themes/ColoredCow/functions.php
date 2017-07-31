@@ -79,7 +79,7 @@
         $message = array(
             'subject' => 'Request Registred',
             'from_email' => 'himanshu@coloredcow.com',
-            'from_name' => 'Himanshu Dhiman',
+            'from_name' => 'ColoredCow',
             'to' => $recipients,
             'preserve_recipients' => false,
             'bcc_address' => 'hkd26dhi@gmail.com',
