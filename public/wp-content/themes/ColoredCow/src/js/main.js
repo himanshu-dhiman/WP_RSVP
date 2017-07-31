@@ -39,6 +39,7 @@ jQuery(document).ready(function($) {
 				attendance_event_id:attendance_event_id
 			},
 			success:function(e){
+				$("#all-events-table").hide();
 				$("#all-guests-table").hide();
 				$("#invited-guests-table").show()
 				$(".invited-guest-table tbody").html(e);
@@ -54,6 +55,7 @@ jQuery(document).ready(function($) {
 			url:PARAMS.ajaxurl,
 			data:{action:'show_approved_guests'},
 			success:function(e){
+				$("#all-events-table").hide();
 				$("#guest-request-table").hide();
 				$("#invited-guests-table").hide();
 				$("#all-guests-table").show();
@@ -126,7 +128,7 @@ jQuery(document).ready(function($) {
 		});
 	}
 
-	$(".invitation").on("click",function(){
+	$(document).on("click", ".invitation",function(){
 		var event_id=$(this).data('id');
 		$.ajax({
 			type: 'POST',
@@ -137,6 +139,21 @@ jQuery(document).ready(function($) {
 			},
 			success:function(e){
 				console.log(e);
+			}
+		});
+	});
+
+	$(".show-all-events").on("click",function(){
+		$.ajax({
+			type: 'POST',
+			url:PARAMS.ajaxurl,
+			data:{action:'show_all_events'},
+			success:function(e){
+				$("#all-guests-table").hide();
+				$("#guest-request-table").hide();
+				$("#invited-guests-table").hide();
+				$("#all-events-table").show();
+				$(".all-events-table tbody").html(e);
 			}
 		});
 	});

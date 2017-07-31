@@ -15,23 +15,8 @@ $event_post_args=array(
 		<div class="guest-details-description">Here, you can Send Invitations for an Event,see the Guest Requests for an Event or the Guest Attendance Status for each Event at once.</div><hr>
 		<div class="row">
 			<div class="col-lg-3 col-md-3 col-sm-12">
-				<div class="dropdown">
-  					<button class="btn btn-block btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Send Invitations</button>
-  					<div class="dropdown-menu" aria-labelledby="dropdown-menu-button">
-  						<?php 
-  							if ( $event_query->have_posts() ) :
-				                while( $event_query->have_posts() ) :
-				                $event_query->the_post();
-				                $event_id=get_the_ID();
-				        ?>
-    							<a class="dropdown-item  invitation" href="#" data-id="<?php echo $event_id; ?>"><?php echo get_the_title(); ?></a>
-  						<?php 
-	  							endwhile;
-	  						endif;
-  						?>
-  					</div>
-				</div>
-			</div>
+					<button class="btn btn-block btn-primary show-all-events" type="button">Send Invitations</button>
+  			</div>
 			&nbsp;&nbsp;<b>OR</b>&nbsp;&nbsp;
 			<div class="col-lg-4 col-md-4 col-sm-12">
 				<div class="dropdown">
@@ -62,22 +47,28 @@ $event_post_args=array(
 		</div>
 		<br><br>
 		<div id="tables">
-			<div id="all-guests-table">
+			<div id="all-guests-table" class="hidden">
 				<?php
 					require('views/all-guest-table-header.php');	
 					require('views/guest-table-footer.php');
 				?>
 			</div>
-			<div id="invited-guests-table">	
+			<div id="invited-guests-table" class="hidden">	
 				<?php
 					require('views/invited-guest-table-header.php');
 					require('views/guest-table-footer.php');
 				?>
 			</div>
-			<div id="guest-request-table">
+			<div id="guest-request-table" class="hidden">
 				<?php
 					require('views/guest-request-table-header.php');
 					require('views/guest-table-footer.php');
+				?>
+			</div>
+			<div id="all-events-table" class="hidden">
+				<?php
+					require('views/all-events-table-header.php');
+					require('views/all-events-table-footer.php');
 				?>
 			</div>
 		</div>

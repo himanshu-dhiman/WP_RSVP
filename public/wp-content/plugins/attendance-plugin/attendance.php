@@ -178,7 +178,7 @@
 				$guest_request_table_body.='<td class="capitalize">'.$cat.'</td>';
 				$guest_request_table_body.='<td><button type="button" name="add" data-guestid="'.$guest_id.'" class="btn btn-success approve-guest" data-eventid="'.$event_id.'">Approve</button>&nbsp;&nbsp';
 				if('Rejected'==$cat) :
-				$guest_request_table_body.='<button type="button" name="reject" data-guestid="'.$guest_id.'" class="btn btn-danger reject-guest disabled" data-eventid="'.$event_id.'">Reject</button></td>';
+				$guest_request_table_body.='<button type="button" name="reject" data-guestid="'.$guest_id.'" class="btn btn-danger reject-guest" data-eventid="'.$event_id.'" disabled >Reject</button></td>';
 				else :	
 				$guest_request_table_body.='<button type="button" name="reject" data-guestid="'.$guest_id.'" class="btn btn-danger reject-guest" data-eventid="'.$event_id.'">Reject</button></td>';
 				endif;
@@ -237,7 +237,6 @@
 			'from_name' => 'ColoredCow',
 			'to' => $recipients,
 			'preserve_recipients' => false,
-			'bcc_address' => 'hkd26dhi@gmail.com',
 			'merge' => true,
 			'merge_language' => 'mailchimp',
 			'inline_css' => true,
@@ -299,7 +298,6 @@
             'from_name' => 'ColoredCow',
             'to' => $recipients,
             'preserve_recipients' => false,
-            'bcc_address' => 'hkd26dhi@gmail.com',
             'merge' => true,
             'merge_language' => 'mailchimp',
             'inline_css' => true,
@@ -329,4 +327,35 @@
         var_dump($result);
         wp_die();
     }
+
+    function show_all_events(){
+		$all_events_post_args=array(
+			'post_type' => 'event',
+			'posts_per_page' => -1
+		);
+		$all_events_table_body='';
+		$all_events_query = new WP_Query($all_events_post_args);
+		if ( $all_events_query->have_posts() ) :
+			while( $all_events_query->have_posts() ) :
+				$all_events_query->the_post();
+				$name=get_the_title();
+				$theme=get_field('theme');
+				$date=get_field('date');
+				$venue=get_field('venue');
+				$event_id=get_the_ID();
+				$all_events_table_body.='<tr class="table-success">';
+				$all_events_table_body.='<td class="capitalize">'.$name.'</td>';
+				$all_events_table_body.='<td>'.$theme.'</td>';
+				$all_events_table_body.='<td class="capitalize">'.$date.'</td>';
+				$all_events_table_body.='<td class="capitalize">'.$venue.'</td>';
+				$all_events_table_body.='<td><button type="button" name="reject" class="btn btn-info invitation" data-eventid="'.$event_id.'">Send Invitations</button></td>';
+				$all_events_table_body.='</tr>';
+			endwhile;
+			echo $all_events_table_body;
+		else :
+			echo "Sorry,no records found for your request";
+		endif;
+		wp_die();
+	}
+	add_action('wp_ajax_show_all_events','show_all_events');
 ?>

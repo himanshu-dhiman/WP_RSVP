@@ -82,7 +82,6 @@
             'from_name' => 'ColoredCow',
             'to' => $recipients,
             'preserve_recipients' => false,
-            'bcc_address' => 'hkd26dhi@gmail.com',
             'merge' => true,
             'merge_language' => 'mailchimp',
             'inline_css' => true,
