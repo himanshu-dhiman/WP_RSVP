@@ -24,7 +24,7 @@
 <body class="main-body">
 	<div class="container">
 	<br>
-        <div class="card-title text-center thank-you-text">Looking forward to see you at the event.</div>
+        <div class="card-title text-center thank-you-text">Looking forward to see you at the event</div>
 	<hr>
         <div class="guest-details text-center">
             <div><i class="fa fa-user-circle-o" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo $name; ?>
@@ -32,7 +32,7 @@
             <div><i class="fa fa-envelope-open-o" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo $email; ?></div>
             <div><i class="fa fa-mobile" aria-hidden="true"></i>&nbsp;&nbsp;<?php echo $phone; ?></div>
             <hr>
-            <a href="<?php echo home_url(); ?>" class="btn btn-success btn-lg ">See more Events</a>
+            <a href="<?php echo home_url(); ?>" class="btn btn-success ">Visit Site</a>
         </div>
     </div>
 </body>

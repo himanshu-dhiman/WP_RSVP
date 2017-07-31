@@ -40,6 +40,7 @@ Text Domain: coloredcow
 	padding-top: 120px;
 	background-image: url('dist/img/bg.png');
 	background-size:100% 100%;
+	background-repeat: no-repeat;
 }
 .logo{
 	width:220px;
@@ -134,13 +135,13 @@ Text Domain: coloredcow
 .thank-you-text{
 	@extend .font-marcellus-sc;
 	color:$goldenrod;
-	font-size:50px;
+	font-size:30px;
 }
 .guest-details{
 	@extend .font-open-sans;
 	padding-top:20px;
 	color:$white;
-	font-size:40px;
+	font-size:20px;
 }
 .event-name{
 	@extend .font-marcellus-sc;

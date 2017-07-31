@@ -129,7 +129,7 @@ jQuery(document).ready(function($) {
 	}
 
 	$(document).on("click", ".invitation",function(){
-		var event_id=$(this).data('id');
+		var event_id=$(this).data('eventid');
 		$.ajax({
 			type: 'POST',
 			url:PARAMS.ajaxurl,
@@ -138,7 +138,11 @@ jQuery(document).ready(function($) {
 				event_id:event_id
 			},
 			success:function(e){
-				console.log(e);
+				$("#all-guests-table").hide();
+				$("#guest-request-table").hide();
+				$("#invited-guests-table").hide();
+				$("#all-events-table").show();
+				$(".all-events-table tbody").html(e);
 			}
 		});
 	});

@@ -42,7 +42,7 @@
 	function show_guest_tables(){
 		if( ! isset( $_POST['attendance_event_id'] ) ) :
 			wp_die();
- 		else :
+		else :
 			$event_id=$_POST['attendance_event_id'];
 			$invited_guests_table=invited_guest_body($event_id);
 			echo $invited_guests_table;
@@ -54,7 +54,7 @@
 	function show_guest_request_table(){
 		if( ! isset( $_POST['attendance_event_id'] ) ) :
 			wp_die();
- 		else :
+		else :
 			$event_id=$_POST['attendance_event_id'];
 			$requested_guests_table=requested_guest_body($event_id);
 			echo $requested_guests_table;
@@ -217,18 +217,18 @@
 						$guest_name=get_the_title();
 						$guest_id=get_the_ID();
 						$guest_email=get_field('email');
-						update_post_meta($guest_id,'status','pending');
+						add_post_meta($guest_id,'status','pending');
 						add_post_meta($guest_id,'event_id',$event_id);
 						$recipients[] = array(
-      					  	'email' => $guest_email,
-        					'name' => $guest_name,
-					        'type' => 'to'
-					    );
+							'email' => $guest_email,
+							'name' => $guest_name,
+							'type' => 'to'
+						);
 					endwhile;
 				endwhile;
 			endif;
 		endif;
-		var_dump($recipients);
+		update_post_meta($event_id,'invite_status','sent');
 		$template_name = 'Invitation';
 		$template_content = '';
 		$message = array(
@@ -263,72 +263,69 @@
 		$async = false;
 		$ip_pool = 'Main Pool';
 		$result = $mandrill->messages->sendTemplate($template_name,$template_content,$message, $async, $ip_pool);
-		var_dump($result);
+		show_all_events();
 		wp_die();
 	}
 	add_action( 'wp_ajax_send_invitation_mail', 'send_invitation_mail' );
 
 	function request_approved_mail($guest_id){
-        require_once(__DIR__.'/vendor/mandrill/mandrill/src/Mandrill.php');
-        var_dump($guest_id);
-        $guest_post_args=array(
-            'post_type' => 'guest',
-            'p'=>$guest_id
-        );
-        $guests_query= new WP_Query($guest_post_args);
-            if($guests_query->have_posts() ) :
-                while ( $guests_query->have_posts() ) :
-                    $guests_query->the_post();
-                    $mandrill = new Mandrill('Lx5txGX1JDBaRLxHvy2rVA');
-                    $guest_name=get_the_title();
-                    $guest_email=get_field('email');
-                    $recipients[] = array(
-                        'email' => $guest_email,
-                        'name' => $guest_name,
-                        'type' => 'to'
-                    );
-                endwhile;
-            endif;
-            var_dump($recipients);
-        $template_name = 'Approved';
-        $template_content = '';
-        $message = array(
-            'subject' => 'Request Accepted',
-            'from_email' => 'himanshu@coloredcow.com',
-            'from_name' => 'ColoredCow',
-            'to' => $recipients,
-            'preserve_recipients' => false,
-            'merge' => true,
-            'merge_language' => 'mailchimp',
-            'inline_css' => true,
-            'global_merge_vars' => array(
-                array(
-                    'name' => 'event_name',
-                    'content' => 'ColoredCow-Soiree'
-                ),
-            ),
-            'merge_vars' => array(
-                array(
-                    'rcpt' => 'recipient.email@example.com',
-                    'vars' => array(
-                        array(
-                            'name' => 'merge2',
-                            'content' => 'merge2 content'
-                        )
-                    )
-                )
-            ),
-            'tags' => array('password-resets'),
-            'metadata' => array('website' => 'www.coloredcow.com')
-        );
-        $async = false;
-        $ip_pool = 'Main Pool';
-        $result = $mandrill->messages->sendTemplate($template_name,$template_content,$message, $async, $ip_pool);
-        var_dump($result);
-        wp_die();
-    }
+		require_once(__DIR__.'/vendor/mandrill/mandrill/src/Mandrill.php');
+		$guest_post_args=array(
+			'post_type' => 'guest',
+			'p'=>$guest_id
+		);
+		$guests_query= new WP_Query($guest_post_args);
+			if($guests_query->have_posts() ) :
+				while ( $guests_query->have_posts() ) :
+					$guests_query->the_post();
+					$mandrill = new Mandrill('Lx5txGX1JDBaRLxHvy2rVA');
+					$guest_name=get_the_title();
+					$guest_email=get_field('email');
+					$recipients[] = array(
+						'email' => $guest_email,
+						'name' => $guest_name,
+						'type' => 'to'
+					);
+				endwhile;
+			endif;
+		$template_name = 'Approved';
+		$template_content = '';
+		$message = array(
+			'subject' => 'Request Accepted',
+			'from_email' => 'himanshu@coloredcow.com',
+			'from_name' => 'ColoredCow',
+			'to' => $recipients,
+			'preserve_recipients' => false,
+			'merge' => true,
+			'merge_language' => 'mailchimp',
+			'inline_css' => true,
+			'global_merge_vars' => array(
+				array(
+					'name' => 'event_name',
+					'content' => 'ColoredCow-Soiree'
+				),
+			),
+			'merge_vars' => array(
+				array(
+					'rcpt' => 'recipient.email@example.com',
+					'vars' => array(
+						array(
+							'name' => 'merge2',
+							'content' => 'merge2 content'
+						)
+					)
+				)
+			),
+			'tags' => array('password-resets'),
+			'metadata' => array('website' => 'www.coloredcow.com')
+		);
+		$async = false;
+		$ip_pool = 'Main Pool';
+		$result = $mandrill->messages->sendTemplate($template_name,$template_content,$message, $async, $ip_pool);
+		wp_die();
+	}
 
-    function show_all_events(){
+	function show_all_events(){
 		$all_events_post_args=array(
 			'post_type' => 'event',
 			'posts_per_page' => -1
@@ -343,12 +340,17 @@
 				$date=get_field('date');
 				$venue=get_field('venue');
 				$event_id=get_the_ID();
+				$invite_status=get_field('invite_status');
 				$all_events_table_body.='<tr class="table-success">';
 				$all_events_table_body.='<td class="capitalize">'.$name.'</td>';
 				$all_events_table_body.='<td>'.$theme.'</td>';
 				$all_events_table_body.='<td class="capitalize">'.$date.'</td>';
 				$all_events_table_body.='<td class="capitalize">'.$venue.'</td>';
-				$all_events_table_body.='<td><button type="button" name="reject" class="btn btn-info invitation" data-eventid="'.$event_id.'">Send Invitations</button></td>';
+				if('sent'==$invite_status){
+					$all_events_table_body.='<td><button type="button" name="reject" class="btn btn-info invitation" data-eventid="'.$event_id.'" disabled>Send Invitations</button></td>';
+				} else {
+					$all_events_table_body.='<td><button type="button" name="reject" class="btn btn-info invitation" data-eventid="'.$event_id.'">Send Invitations</button></td>';
+				}
 				$all_events_table_body.='</tr>';
 			endwhile;
 			echo $all_events_table_body;
