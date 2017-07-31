@@ -200,7 +200,7 @@
 		);
 		$event_post_args=array(
 			'post_type' => 'event',
-			'ID'=>$event_id,
+			'p'=>$event_id,
 			'posts_per_page' => -1
 		);
 		$event_query = new WP_Query($event_post_args);
@@ -210,14 +210,15 @@
 				while( $event_query->have_posts() ) :
 					$event_query->the_post();
 					$event_name=get_the_title();
-					$event_theme=get_field('theme');
-					$event_date=get_field('date');
-					$event_venue=get_field('venue');
+					$event_id=get_the_ID();
 					while ( $guests_query->have_posts() ) :
 						$guests_query->the_post();
 						$mandrill = new Mandrill('Lx5txGX1JDBaRLxHvy2rVA');
 						$guest_name=get_the_title();
+						$guest_id=get_the_ID();
 						$guest_email=get_field('email');
+						update_post_meta($guest_id,'status','pending');
+						add_post_meta($guest_id,'event_id',$event_id);
 						$recipients[] = array(
       					  	'email' => $guest_email,
         					'name' => $guest_name,
